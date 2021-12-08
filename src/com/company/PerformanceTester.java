@@ -3,6 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Arrays;
 
 /**
  *
@@ -18,7 +19,10 @@ public class PerformanceTester {
      * PefromanceTester is a constructor which creates object tester,
      * it also creates table of time for list and and array
      */
-    public PerformanceTester(int countOfMethodCalls){
+    public PerformanceTester(int countOfMethodCalls) throws Exception {
+        if (countOfMethodCalls <= 0){
+            throw new Exception("quantity cannot be non-constitable");
+        }
         this.countOfMethodCalls = countOfMethodCalls;
         CollectionsRunningTime = new int[2][3];
         GeneralTester();
@@ -106,8 +110,7 @@ public class PerformanceTester {
             return false;
 
         PerformanceTester that = (PerformanceTester) obj;
-        return that.toString().equals(this.toString()) &&
-                that.countOfMethodCalls == this.countOfMethodCalls;
+        return ((PerformanceTester) obj).CollectionsRunningTime == this.CollectionsRunningTime;
     }
     /**
      *overriding equals method which would allowing us to get hash of an element
